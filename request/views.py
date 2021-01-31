@@ -19,7 +19,7 @@ def req_new(request):
     context = {}
     sent = False
     nuid_r = request.user.id
-    adminemail = "gargi.nandy111@gmail.com"
+    adminemail = "unofpinfo@gmail.com"
     email_r = request.user.email
     if request.method == "POST":
         # form = RequestForm(request.POST)
@@ -43,10 +43,10 @@ def req_new(request):
                                          additional_request=additional_request, status='New')
         # username_r = request.user.id
         subject: str = "UNO Guest House Booking Request"
-        message = f"Your booking request has been submitted \nOnce your request is processed you should recieve another email.\n\nThank you, UNOGHB Staff. "
+        message = f"Your booking request has been submitted \nOnce your request is processed you should recieve another email.\n\nThank you, UNOFP Staff. "
         message2 = f"New booking request has been submitted. Please fill in the requested items."
-        msg1 = (subject, message, 'gargi.nandy111@gmail.com', [email_r])
-        msg2 = (subject, message2, 'gargi.nandy111@gmail.com', [adminemail])
+        msg1 = (subject, message, 'unofpinfo@gmail.com', [email_r])
+        msg2 = (subject, message2, 'unofpinfo@gmail.com', [adminemail])
         send_mass_mail((msg1, msg2), fail_silently=False)
         sent = True
         reqs = Request.objects.filter(username=nuid_r)
