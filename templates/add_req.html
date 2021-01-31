@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+<style>
+        body {
+            background-color: beige;
+
+        }
+    </style>
+    <h1>Submit New Request</h1>
+    <form action="{% url 'req_new' %}" method="POST" class="service-form">{% csrf_token %}
+          {{ form.as_p }}
+        <button type="submit" class="save btn btn-primary ml-2">Submit Request</button>
+    </form>
+
+{% endblock %}
+
+</html>

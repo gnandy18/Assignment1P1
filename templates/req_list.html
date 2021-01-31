@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+    <body>
+    <style>
+        body {
+            background-color: beige;
+        }
+    </style>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+            <h2 style="padding-left: 15Px">Request Information</h2>
+        </div>
+        {% if reqs.count > 0 %}
+            <div style="width: 90%">
+            <ul>
+                <li>To update the request where the 'Status' is <b>Ready</b>, please contact our office at:
+                    402-554-1900 or email: <a href="mailto:gargi.nandy111@gmail.com">unofpstaff@unomaha.edu</a>.
+                </li>
+
+
+            </ul>
+        </div>
+            <div class="table-responsive-lg">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr class="bg-info">
+                    <th>User Name</th>
+                    <th>Food Allergy</th>
+                    <th>Creation Date</th>
+                    <th>Additional Request</th>
+                    <th>Bag</th>
+                    <th>Status</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for req in reqs %}
+                    <tr>
+                        <td>{{ req.username }}</td>
+                        <td>{{ req.food_allergy }}</td>
+                        <td>{{ req.request_date }}</td>
+                        <td>{{ req.additional_request }}</td>
+                        <td>{{ req.bag }}</td>
+                        <td>{{ req.status }}</td>
+                        {% if req.status != 'Ready' and req.status != 'Delivered' %}
+
+                        <td><a href="{% url 'req_edit' pk=req.pk %}" class="btn btn-danger">Edit</a></td>
+                        <td><a href="{% url 'req_delete' pk=req.pk %}"
+
+                               onclick="return confirm('Are you sure you want to delete your booking request?')"
+                               class="btn btn-danger">Delete</a></td>
+
+                    {% else %}
+                        <td>No Actions</td>
+                    {% endif %}
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+        {% else %}
+            You currently have no booking requests.  To create a new request click here:
+            <a href="{% url 'req_new' %}">New Request</a>
+        {% endif %}
+        <br>
+        </div>
+    </div>
+    </body>
+{% endblock %}

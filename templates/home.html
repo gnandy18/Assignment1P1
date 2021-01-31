@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<style>
+        body {
+            background-color: beige;
+        }
+    </style>
+<div class="container">
+    <div align="center" class="bg-info text-dark">
+        {% if user.is_superuser %}
+            <br><br>
+            <h2 class="display-7">UNO Food Pantry Admin</h2>
+
+
+        {% elif user.is_authenticated %}
+            <h2>UNO Food Pantry Request Form</h2>
+            <p style="padding-left: 10px; padding-right: 10px">
+                A selection of healthy, organic, and culturally sensitive food items are available for currently enrolled students at UNO,
+                and currently employed faculty and staff members at UNO. After clicking "Submit," you will receive an email the morning of the next business day letting you know that your request has been filled.</p>
+
+                Please select your desired items from the three options:
+                <li> The Standard with Chicken bag includes 1 can of chicken, 1 can of beans, 2 cans of vegetables, 2 cans of fruits, 2 choices of grains, 1 soup or sauce, and 1 other item.
+
+                <li> The Standard with Tuna bag includes 1 can of tuna, 1 can of beans, 2 cans of vegetables, 2 cans of fruits, 2 choices of grains, 1 soup or sauce, and 1 other item.
+                <li> The vegetarian bag includes 1 container of peanut butter, 1 can of beans, 2 cans of vegetables, 2 cans of fruits, 2 choices of grains, 1 soup or sauce, and 1 other item.<br>
+                If you would like to customize your bag, please do that in the last question of this section!
+
+                You will be able to request one bag TWICE a week.
+
+Your package may be picked up at the CEC 8 AM - 5 PM Monday, Tuesday, Wednesday, Thursday, and 8 AM - 3 PM Friday.
+
+
+            <form action="{% url 'req_new' %}" method="post">
+
+
+             </form>
+        {% else %}
+            <div>
+                <br><br>
+                <!--h1 class="display-4">UNO Food Pantry/h1-->
+                <img class="img-fluid" align="center" height="350" width="600" src="{% static "images/logo pic2.PNG" %}"
+                     alt="Logo text2"/>
+                <div><p class="bg-warning text-black">Please <a href="{% url 'signup' %}"><b>register</b></a> or <a
+                        href="{% url 'login' %}"><b>login</b></a> to request items.</p></div>
+            <p class="p-4" align="left">
+                The UNO Food Pantry application is created to support students and faculty with dietary and personal hygeine needs.
+                All request can be submitted via this portal twice per week.
+                Please feel free to contact the staff at 402-554-1900 or email:
+                <a class="text-light" href="mailto:gargi.nandy111@gmail.com">unofpstaff@unomaha.edu</a>.
+            </p>
+            </div>
+        {% endif %}
+        <div><br></div>
+    </div>
+    </div>
+{% endblock content %}
+
+</html>

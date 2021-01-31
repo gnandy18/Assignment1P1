@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block title %}Booking Request Submitted{% endblock title %}
+
+{% block content %}
+{% if sent %}
+   <div class="card" style="padding: 10px 10px 10px">
+    <p>An email has been sent to the email address: <span style="color: blue">{{ email_r }}</span>,
+    that you provided with details of your request.
+    Once your request has been processed another email will be sent.
+
+    You can login in to check the status of your request.</p>
+    {% else %}
+       {{ error }}
+    {% endif %}
+<p>If you have any questions you can reach us by phone: 402-554-1900
+    or email: <a href="mailto:gargi.nandy111@gmail.com">unofpstaff@unomaha.edu</a>.</p>
+<p>Thank you UNO Food Pantry Staff.</p>
+    </div>
+{% endblock content %}
+</html>
